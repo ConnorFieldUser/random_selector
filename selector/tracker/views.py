@@ -14,14 +14,9 @@ from tracker.models import List
 
 class ListListView(ListView):
     template_name = 'index.html'
-    model = List
-    # def get_context_data(self):
-    #     return List.objects.filter(creator=self.request.user)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['transactions'] = List.objects.filter(creator=self.request.user)
-        return context
+    def get_queryset(self):
+        return List.objects.filter(creator=self.request.user)
 
 
 class UserCreateView(CreateView):
