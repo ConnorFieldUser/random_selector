@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>
+  {{ list.name }}
+</h1>
+
+
+
+    <h4>
+      {{ list.description }}
+    </h4>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        {% for option in list.option_set.all %}
+          <h3>{{ option }}</h3>
+          <p>{{ option.details }}</p>
+        {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

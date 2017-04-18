@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from tracker.views import IndexView
+from tracker.views import ListListView, UserCreateView, ListCreateView, ListDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
-    url(r'^$', IndexView.as_view(), name="index_view"),
-
+    url(r'^$', ListListView.as_view(), name="list_list_view"),
+    url(r'^user/create$', UserCreateView.as_view(), name="user_create_view"),
+    url(r'^list/create$', ListCreateView.as_view(), name="list_create_view"),
+    url(r'^list/detail/(?P<pk>\d+)$', ListDetailView.as_view(), name="list_detail_view"),
 ]
