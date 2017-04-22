@@ -40,10 +40,23 @@ class List(models.Model):
 
 
 class RandomOptionManager(models.Manager):
+    # def random(self):
+    #     count = self.aggregate(count=Count('id'))['count']
+    #     random_index = randint(0, count - 1)
+    #     return self.all()[random_index]
+
     def random(self):
         count = self.aggregate(count=Count('id'))['count']
+        print(count)
         random_index = randint(0, count - 1)
+        print(random_index)
+        print("________________________________")
+        print(self.all()[random_index])
         return self.all()[random_index]
+
+    # def get_queryset(self):
+    #     return super(RandomOptionManager, self).get_queryset().filter()[:1]
+
     # def get_queryset(self):
     #     return super(RandomOptionManager, self).get_queryset().filter(author='Roald Dahl')
 
@@ -53,6 +66,9 @@ class Option(models.Model):
     name = models.CharField(max_length=30)
     details = models.CharField(max_length=108, null=True, blank=True)
     related_list = models.ForeignKey(List)
+
+    objects = models.Manager()
+    random_objects = RandomOptionManager()
 
     def __str__(self):
         return str(self.name)

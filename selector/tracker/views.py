@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 
 
-from tracker.models import List
+from tracker.models import List, Option
 
 # Create your views here.
 
@@ -15,8 +15,11 @@ from tracker.models import List
 class ListListView(ListView):
     template_name = 'index.html'
 
+    # def get_queryset(self):
+    #     return List.objects.filter(creator=self.request.user)
+
     def get_queryset(self):
-        return List.objects.filter(creator=self.request.user)
+        return Option.random_objects.random()
 
 
 class UserCreateView(CreateView):

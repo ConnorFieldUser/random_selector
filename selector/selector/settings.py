@@ -120,3 +120,11 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    ]
+}

@@ -5,13 +5,6 @@
 </div>
 <hr>
 
-{% for list in object_list %}
-  <h3><a href="{% url 'list_detail_view' list.id %}">{{ list.name }}</a></h3>
-  <h3>{{ list.creator }}</h3>
-
-<p class="double"> {% for option in list.option_set.all %} •{{option.name}} {% endfor %}</p>
-
-{% endfor %}
-
+{{ object_list }}
 
 {% endblock %}
